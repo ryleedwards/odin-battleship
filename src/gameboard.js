@@ -2,10 +2,12 @@ const Ship = require('./ship');
 const tempShip = new Ship(3);
 
 class Gameboard {
-  constructor(rows = 10, cols = 10) {
+  constructor(rows = 10, cols = 10, maxShips = 5, ships = []) {
     this.rows = rows;
     this.cols = cols;
     this.board = this._generateBoard(this.rows, this.cols);
+    this.maxShips = maxShips;
+    this.ships = ships;
   }
 
   _generateBoard() {
@@ -25,7 +27,7 @@ class Gameboard {
     else return false;
   }
 
-  placeShip(xCoordinate, yCoordinate, ship) {
+  placeShip(xCoordinate, yCoordinate, ship, direction) {
     // if passed length instead of ship object, it can be assumed
     // to be a desired length instead
 
@@ -34,16 +36,28 @@ class Gameboard {
       ship = new Ship(ship);
     }
 
-    for (let i = 0; i < ship.length; i++) {
-      //prevent placement of boat on top of another boat
+    // determine horizontal or vertical
 
+    // do desired coordinates overlap with other boats?
+
+    // do desired coordinates spill over available board space?
+
+    // has maxShips allowed been exceeded?
+    if (this.ships.length < this.maxShips) {
+      // >>NO
+      ship.index = this.ships.length;
+      this.ships.push(ship);
+    }
+    // >>YES
+    else throw new Error('Exceeded max number of ships');
+
+    // All checks pass, proceed with placement
+    for (let i = 0; i < ship.length; i++) {
       this.board[yCoordinate][xCoordinate + i] = 'S';
     }
-
-    //TODO - Horizontal vs. Vertical placement
   }
 
-  _transpose(xCoordinate, yCoordinate) {}
+  _transpose(xCoordinate, yCoordinate, shipLength) {}
 
   _checkNeighbor(xCoordinate, yCoordinate) {}
 }
