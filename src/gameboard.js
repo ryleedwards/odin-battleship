@@ -35,6 +35,8 @@ class Gameboard {
     }
 
     for (let i = 0; i < ship.length; i++) {
+      //prevent placement of boat on top of another boat
+
       this.board[yCoordinate][xCoordinate + i] = 'S';
     }
 
