@@ -1,8 +1,7 @@
 class Ship {
-  constructor(length, numHits = 0, sunk = false) {
+  constructor(length, numHits = 0) {
     this.setLength(length);
     this.numHits = numHits;
-    this.sunk = sunk;
   }
 
   setLength(newLength) {
@@ -10,6 +9,15 @@ class Ship {
       this.length = newLength;
     } else
       throw new Error('Ship length must be greater than 0 and at most 5 units');
+  }
+
+  hit() {
+    this.numHits += 1;
+  }
+
+  isSunk() {
+    if (this.numHits === this.length) return true;
+    else return false;
   }
 }
 
