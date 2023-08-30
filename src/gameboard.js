@@ -42,6 +42,10 @@ class Gameboard {
 
     //TODO - Horizontal vs. Vertical placement
   }
+
+  _transpose(xCoordinate, yCoordinate) {}
+
+  _checkNeighbor(xCoordinate, yCoordinate) {}
 }
 
 module.exports = Gameboard;
