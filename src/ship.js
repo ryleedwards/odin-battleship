@@ -1,7 +1,12 @@
 class Ship {
-  constructor(length, numHits = 0) {
+  constructor(length, numHits = 0, index, orientation = 'h') {
     this.setLength(length);
     this.numHits = numHits;
+    // Index represents which consecutive ship I am
+    // on the board. E.g. 3rd boat placed -> index = 2
+    // This is done to provide distinction from other boats
+    this.index = index;
+    this.orientation = orientation;
   }
 
   setLength(newLength) {
@@ -9,6 +14,11 @@ class Ship {
       this.length = newLength;
     } else
       throw new Error('Ship length must be greater than 0 and at most 5 units');
+  }
+
+  toggleOrientation() {
+    if (this.orientation === 'h') this.orientation = 'v';
+    else this.orientation = 'h';
   }
 
   hit() {

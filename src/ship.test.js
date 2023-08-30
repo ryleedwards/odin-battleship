@@ -48,4 +48,18 @@ describe('Ship methods', () => {
       expect(ship.isSunk()).toBe(false);
     });
   });
+
+  describe('Ship.toggleOrientation()', () => {
+    test('toggle orientation successfully', () => {
+      const ship = new Ship(3);
+      if (ship.orientation === 'h') {
+        ship.toggleOrientation();
+        expect(ship.orientation === 'v');
+      }
+      if (ship.orientation === 'v') {
+        ship.toggleOrientation();
+        expect(ship.orientation === 'h');
+      }
+    });
+  });
 });
