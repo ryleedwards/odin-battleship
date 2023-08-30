@@ -21,7 +21,7 @@ describe('Gameboard creation', () => {
 });
 
 describe('Gameboard.placeShip()', () => {
-  test('places a ship given coordinates', () => {
+  test('places a ship given ship object', () => {
     const gameboard = new Gameboard();
     const ship = new Ship(2);
     const xCoordinate = 2;
