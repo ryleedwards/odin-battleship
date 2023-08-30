@@ -21,10 +21,12 @@ describe('Gameboard creation', () => {
 });
 
 describe('Gameboard.placeShip()', () => {
-  xtest('places a ship given coordinates', () => {
+  test('places a ship given coordinates', () => {
     const gameboard = new Gameboard();
+    const ship = new Ship(2);
     const xCoordinate = 2;
     const yCoordinate = 4;
-    gameboard.placeShip(new Ship(2), xCoordinate, yCoordinate);
+    gameboard.placeShip(xCoordinate, yCoordinate, ship);
+    expect(gameboard.evaluateCoordinate(xCoordinate, yCoordinate)).toBe(true);
   });
 });
