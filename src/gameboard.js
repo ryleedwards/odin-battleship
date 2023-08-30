@@ -35,7 +35,7 @@ class Gameboard {
     }
 
     for (let i = 0; i < ship.length; i++) {
-      this.board[yCoordinate][xCoordinate + i] = 'x';
+      this.board[yCoordinate][xCoordinate + i] = 'S';
     }
 
     //TODO - Horizontal vs. Vertical placement
