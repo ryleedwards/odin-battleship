@@ -20,7 +20,7 @@ xdescribe('Gameboard creation', () => {
   });
 });
 
-xdescribe('Gameboard.placeShip()', () => {
+describe('Gameboard.placeShip()', () => {
   test('places a ship given ship object', () => {
     const gameboard = new Gameboard();
     const ship = new Ship(2);
@@ -44,6 +44,8 @@ xdescribe('Gameboard.placeShip()', () => {
   xtest('reject ship placed within a tile of another ship', () => {});
 });
 
-describe('FUTURE // Transpose ship', () => {
+xdescribe('FUTURE // Transpose ship', () => {
   test('transpose', () => {});
 });
+
+xdescribe('Ship tracking and indexing', () => {});
