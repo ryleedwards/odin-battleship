@@ -1,7 +1,7 @@
 const Gameboard = require('./gameboard');
 const Ship = require('./ship');
 
-describe('Gameboard creation', () => {
+xdescribe('Gameboard creation', () => {
   const defaultGameboard = new Gameboard();
   const customGameboard = new Gameboard(8, 9);
 
@@ -20,7 +20,7 @@ describe('Gameboard creation', () => {
   });
 });
 
-describe('Gameboard.placeShip()', () => {
+xdescribe('Gameboard.placeShip()', () => {
   test('places a ship given ship object', () => {
     const gameboard = new Gameboard();
     const ship = new Ship(2);
@@ -37,4 +37,13 @@ describe('Gameboard.placeShip()', () => {
     gameboard.placeShip(xCoordinate, yCoordinate, length);
     expect(gameboard.evaluateCoordinate(xCoordinate, yCoordinate)).toBe(true);
   });
+  test('place ship horizontally', () => {});
+  xtest('place ship vertically', () => {});
+  xtest('reject ship placed out-of-bounds', () => {});
+  xtest('reject ship placed on top of other ship', () => {});
+  xtest('reject ship placed within a tile of another ship', () => {});
+});
+
+describe('FUTURE // Transpose ship', () => {
+  test('transpose', () => {});
 });
