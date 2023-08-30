@@ -29,4 +29,12 @@ describe('Gameboard.placeShip()', () => {
     gameboard.placeShip(xCoordinate, yCoordinate, ship);
     expect(gameboard.evaluateCoordinate(xCoordinate, yCoordinate)).toBe(true);
   });
+  test('places a ship given ship length', () => {
+    const gameboard = new Gameboard();
+    const length = 2;
+    const xCoordinate = 2;
+    const yCoordinate = 4;
+    gameboard.placeShip(xCoordinate, yCoordinate, length);
+    expect(gameboard.evaluateCoordinate(xCoordinate, yCoordinate)).toBe(true);
+  });
 });
