@@ -1,2 +1,3 @@
-# webpack-starter-template
-Starting template for projects utilizing webpack
+# Battleship
+Built based on lesson Project: [Battleship <> Javascript Course](https://www.theodinproject.com/lessons/node-path-javascript-battleship)
+
