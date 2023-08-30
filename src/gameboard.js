@@ -13,7 +13,7 @@ class Gameboard {
     for (let i = 0; i < this.rows; i++) {
       const colArr = [];
       for (let j = 0; j < this.cols; j++) {
-        colArr.push(null);
+        colArr.push('W');
       }
       rowArr.push(colArr);
     }
@@ -21,7 +21,7 @@ class Gameboard {
   }
 
   evaluateCoordinate(xCoordinate, yCoordinate) {
-    if (this.board[yCoordinate][xCoordinate] === 'x') return true;
+    if (this.board[yCoordinate][xCoordinate] === 'S') return true;
     else return false;
   }
 
