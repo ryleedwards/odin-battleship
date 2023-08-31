@@ -38,16 +38,12 @@ class Gameboard {
     }
 
     // what are boat's desired placement coords (ALL SQUARES)
-    const desiredCoords = [];
-    for (let i = 0; i < ship.length; i++) {
-      if (ship.orientation === 'h') {
-        // horizontal
-        desiredCoords.push([xCoordinate + i, yCoordinate]);
-      } else if (ship.orientation === 'v') {
-        // vertical
-        desiredCoords.push([xCoordinate, yCoordinate + i]);
-      }
-    }
+    const desiredCoords = this._buildDesiredCoordinates(
+      ship,
+      xCoordinate,
+      yCoordinate,
+      false // MODIFY FOR TRANSPOSE
+    );
 
     // do desired coordinates overlap with other boats?
     if (this.occupied.length > 0) {
@@ -99,6 +95,25 @@ class Gameboard {
     // Add ship to ships array
     this.ships.push(ship);
   }
+
+  _buildDesiredCoordinates(ship, startX, startY, isTranspose) {
+    const desiredCoords = [];
+    if (isTranspose) {
+    } else {
+      for (let i = 0; i < ship.length; i++) {
+        if (ship.orientation === 'h') {
+          // horizontal
+          desiredCoords.push([startX + i, startY]);
+        } else if (ship.orientation === 'v') {
+          // vertical
+          desiredCoords.push([startX, startY + i]);
+        }
+      }
+    }
+    return desiredCoords;
+  }
+
+  _doesPlacementOverlap(ship, desiredCoords) {}
 
   transpose(ship) {}
 
