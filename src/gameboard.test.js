@@ -38,6 +38,18 @@ describe('Coordinate evaluation', () => {
       gameboard.evaluateCoordinate(gameboard.rows + 5, gameboard.cols + 5)
     ).toBe(false);
   });
+
+  test('getShipCoordinates', () => {
+    const ship2 = new Ship(2);
+    gameboard.placeShip(7, 7, ship2);
+    const ship2Coordinates = gameboard.getShipCoordinates(ship2);
+    const [x0, y0] = ship2Coordinates[0];
+    const [x1, y1] = ship2Coordinates[1];
+    expect(x0).toBe(7);
+    expect(y0).toBe(7);
+    expect(x1).toBe(8);
+    expect(y1).toBe(7);
+  });
 });
 
 describe('Gameboard.placeShip()', () => {
