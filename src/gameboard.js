@@ -52,9 +52,7 @@ class Gameboard {
     this._isPlacementInbounds(desiredCoords);
 
     // has maxShips allowed been exceeded?
-    if (this.ships.length >= this.maxShips) {
-      throw new Error('Exceeded max number of ships');
-    }
+    this._isMaxShipsExceeded();
 
     // All checks pass, proceed with placement
 
@@ -119,6 +117,12 @@ class Gameboard {
           `Desired coordinates are out of bounds: ${desiredPair} :: ${yDesired} exceeds ${this.rows}`
         );
     });
+  }
+
+  _isMaxShipsExceeded() {
+    if (this.ships.length >= this.maxShips) {
+      throw new Error('Exceeded max number of ships');
+    }
   }
 
   transpose(ship) {}
