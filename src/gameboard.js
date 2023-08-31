@@ -44,7 +44,7 @@ class Gameboard {
     return shipCoordinates;
   }
 
-  placeShip(xCoordinate, yCoordinate, ship, isTranspose) {
+  placeShip(xCoordinate, yCoordinate, ship) {
     // if passed length instead of ship object, it can be assumed
     // to be a desired length instead
 
@@ -102,8 +102,6 @@ class Gameboard {
     }
   }
 
-  transpose(ship) {}
-
   _buildDesiredCoordinates(ship, startX, startY, isTranspose) {
     const desiredCoords = [];
     if (isTranspose) {
@@ -154,8 +152,6 @@ class Gameboard {
       throw new Error('Exceeded max number of ships');
     }
   }
-
-  _checkNeighbor(xCoordinate, yCoordinate) {}
 }
 
 module.exports = Gameboard;
