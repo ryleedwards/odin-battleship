@@ -37,7 +37,14 @@ describe('Gameboard.placeShip()', () => {
     gameboard.placeShip(xCoordinate, yCoordinate, length);
     expect(gameboard.evaluateCoordinate(xCoordinate, yCoordinate)).toBe(true);
   });
-  test('place ship horizontally', () => {});
+  test('placing boat on top of another throws error', () => {
+    const board = new Gameboard();
+    board.placeShip(2, 3, 4);
+    expect(() => {
+      board.placeShip(4, 3, 2);
+    }).toThrow();
+  });
+  xtest('place ship horizontally', () => {});
   xtest('place ship vertically', () => {});
   xtest('reject ship placed out-of-bounds', () => {});
   xtest('reject ship placed on top of other ship', () => {});
