@@ -105,3 +105,21 @@ describe('Gameboard.placeShip()', () => {
     }).toThrow();
   });
 });
+
+describe('Gameboard.receiveAttack()', () => {
+  const gameboard = new Gameboard();
+  const ship = new Ship(4, 0, 'h');
+  gameboard.placeShip(5, 4, ship);
+  test('Ship attacked', () => {
+    expect(gameboard.receiveAttack(5, 4)).toBe(true);
+    expect(ship.numHits).toBe(1);
+  });
+  test('Attack misses', () => {
+    // correctly returns false
+    expect(gameboard.receiveAttack(8, 9)).toBe(false);
+    // correctly stores missed coordinate
+    let [missX, missY] = gameboard.misses[0];
+    expect(missX).toBe(8);
+    expect(missY).toBe(9);
+  });
+});
