@@ -24,9 +24,16 @@ class Gameboard {
   }
 
   evaluateCoordinate(xCoordinate, yCoordinate) {
-    if (this.board[yCoordinate][xCoordinate] !== 'W') return true;
+    if (
+      xCoordinate < this.rows &&
+      yCoordinate < this.cols &&
+      this.board[yCoordinate][xCoordinate] !== 'W'
+    )
+      return true;
     else return false;
   }
+
+  getShipCoordinates(ship) {}
 
   placeShip(xCoordinate, yCoordinate, ship, isTranspose) {
     // if passed length instead of ship object, it can be assumed
@@ -35,6 +42,12 @@ class Gameboard {
     // perform check on ship arg and if it is not a ship obj, create one
     if (!(ship instanceof Ship)) {
       ship = new Ship(ship, this.ships.length);
+    }
+
+    // assign index if ship has not already been assigned an index
+    if (ship.index === undefined);
+    {
+      ship.index = this.ships.length;
     }
 
     // what are boat's desired placement coords (ALL SQUARES)
@@ -71,10 +84,16 @@ class Gameboard {
         this.occupied.push([xCoordinate, yCoordinate + i]);
       }
     }
-    // Add ship to ships array
-    const shipAlreadyPlaced = this.ships.includes(ship);
-    this.ships.push(ship);
+
+    // has ship already been placed? (i.e. it is in this.ships[])
+    if (!this.ships.includes(ship));
+    {
+      ship.index = this.ships.length;
+      this.ships.push(ship);
+    }
   }
+
+  transpose(ship) {}
 
   _buildDesiredCoordinates(ship, startX, startY, isTranspose) {
     const desiredCoords = [];
@@ -126,8 +145,6 @@ class Gameboard {
       throw new Error('Exceeded max number of ships');
     }
   }
-
-  transpose(ship) {}
 
   _checkNeighbor(xCoordinate, yCoordinate) {}
 }
