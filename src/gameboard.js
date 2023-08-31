@@ -175,6 +175,15 @@ class Gameboard {
       return false;
     }
   }
+
+  checkAllSunk() {
+    let totalSunk = 0;
+    this.ships.forEach((ship) => {
+      if (ship.isSunk()) totalSunk++;
+    });
+    if (totalSunk === this.ships.length) return true;
+    else return false;
+  }
 }
 
 module.exports = Gameboard;
