@@ -28,7 +28,7 @@ class Gameboard {
     else return false;
   }
 
-  placeShip(xCoordinate, yCoordinate, ship) {
+  placeShip(xCoordinate, yCoordinate, ship, isTranspose) {
     // if passed length instead of ship object, it can be assumed
     // to be a desired length instead
 
@@ -72,12 +72,14 @@ class Gameboard {
       }
     }
     // Add ship to ships array
+    const shipAlreadyPlaced = this.ships.includes(ship);
     this.ships.push(ship);
   }
 
   _buildDesiredCoordinates(ship, startX, startY, isTranspose) {
     const desiredCoords = [];
     if (isTranspose) {
+      //TODO
     } else {
       for (let i = 0; i < ship.length; i++) {
         if (ship.orientation === 'h') {
