@@ -49,17 +49,7 @@ class Gameboard {
     this._doesPlacementOverlap(desiredCoords);
 
     // do desired coordinates spill over available board space?
-    desiredCoords.forEach((desiredPair) => {
-      let [xDesired, yDesired] = desiredPair;
-      if (xDesired > this.cols)
-        throw new Error(
-          `Desired coordinates are out of bounds: ${desiredPair} :: ${xDesired} exceeds ${this.cols}`
-        );
-      if (yDesired > this.rows)
-        throw new Error(
-          `Desired coordinates are out of bounds: ${desiredPair} :: ${yDesired} exceeds ${this.rows}`
-        );
-    });
+    this._isPlacementInbounds(desiredCoords);
 
     // has maxShips allowed been exceeded?
     if (this.ships.length >= this.maxShips) {
@@ -115,6 +105,20 @@ class Gameboard {
         });
       });
     }
+  }
+
+  _isPlacementInbounds(desiredCoords) {
+    desiredCoords.forEach((desiredPair) => {
+      let [xDesired, yDesired] = desiredPair;
+      if (xDesired > this.cols)
+        throw new Error(
+          `Desired coordinates are out of bounds: ${desiredPair} :: ${xDesired} exceeds ${this.cols}`
+        );
+      if (yDesired > this.rows)
+        throw new Error(
+          `Desired coordinates are out of bounds: ${desiredPair} :: ${yDesired} exceeds ${this.rows}`
+        );
+    });
   }
 
   transpose(ship) {}
