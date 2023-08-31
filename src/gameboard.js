@@ -46,16 +46,7 @@ class Gameboard {
     );
 
     // do desired coordinates overlap with other boats?
-    if (this.occupied.length > 0) {
-      desiredCoords.forEach((desiredPair) => {
-        let [xDesired, yDesired] = desiredPair;
-        this.occupied.forEach((occupiedPair) => {
-          let [xOccupied, yOccupied] = occupiedPair;
-          if (xDesired === xOccupied && yDesired === yOccupied)
-            throw new Error(`Desired coordinates at ${set} are occupied`);
-        });
-      });
-    }
+    this._doesPlacementOverlap(desiredCoords);
 
     // do desired coordinates spill over available board space?
     desiredCoords.forEach((desiredPair) => {
@@ -113,7 +104,18 @@ class Gameboard {
     return desiredCoords;
   }
 
-  _doesPlacementOverlap(ship, desiredCoords) {}
+  _doesPlacementOverlap(desiredCoords) {
+    if (this.occupied.length > 0) {
+      desiredCoords.forEach((desiredPair) => {
+        let [xDesired, yDesired] = desiredPair;
+        this.occupied.forEach((occupiedPair) => {
+          let [xOccupied, yOccupied] = occupiedPair;
+          if (xDesired === xOccupied && yDesired === yOccupied)
+            throw new Error(`Desired coordinates at ${set} are occupied`);
+        });
+      });
+    }
+  }
 
   transpose(ship) {}
 
