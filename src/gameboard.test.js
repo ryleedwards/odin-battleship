@@ -106,14 +106,4 @@ describe('Gameboard.placeShip()', () => {
   });
 });
 
-xdescribe('FUTURE // Transpose ship', () => {
-  test('transpose', () => {
-    const gameboard = new Gameboard();
-    const ship = new Ship(3, 0, 'h');
-    gameboard.placeShip(4, 3, ship);
-    gameboard.transpose(ship);
-    expect();
-  });
-});
-
 xdescribe('Ship tracking and indexing', () => {});
