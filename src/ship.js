@@ -1,5 +1,5 @@
 class Ship {
-  constructor(length, numHits = 0, index, orientation = 'h') {
+  constructor(length, index, numHits = 0, orientation = 'h') {
     this.setLength(length);
     this.numHits = numHits;
     // Index represents which consecutive ship I am
