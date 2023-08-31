@@ -44,8 +44,22 @@ describe('Gameboard.placeShip()', () => {
       board.placeShip(4, 3, 2);
     }).toThrow();
   });
-  test('place ship horizontally', () => {});
-  test('place ship vertically', () => {});
+  test('place ship horizontally', () => {
+    const board = new Gameboard();
+    const hShip = new Ship(3, board.ships.length, 0, 'h');
+    board.placeShip(3, 4, hShip);
+    for (let i = 0; i < hShip.length; i++) {
+      expect(board.evaluateCoordinate(3 + i, 4)).toBe(true);
+    }
+  });
+  test('place ship vertically', () => {
+    const board = new Gameboard();
+    const vShip = new Ship(3, board.ships.length, 0, 'v');
+    board.placeShip(3, 4, vShip);
+    for (let i = 0; i < vShip.length; i++) {
+      expect(board.evaluateCoordinate(3, 4 + i)).toBe(true);
+    }
+  });
   test('reject ship placed out-of-bounds (x-axis)', () => {
     const gameboard = new Gameboard();
     expect(() => {
@@ -58,8 +72,7 @@ describe('Gameboard.placeShip()', () => {
       gameboard.placeShip(2, 11, 4);
     }).toThrow();
   });
-  xtest('reject ship placed on top of other ship', () => {});
-  xtest('reject ship placed within a tile of another ship', () => {});
+  test('reject ship placed within a tile of another ship', () => {});
 });
 
 xdescribe('FUTURE // Transpose ship', () => {
