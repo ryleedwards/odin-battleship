@@ -105,5 +105,3 @@ describe('Gameboard.placeShip()', () => {
     }).toThrow();
   });
 });
-
-xdescribe('Ship tracking and indexing', () => {});
