@@ -44,9 +44,20 @@ describe('Gameboard.placeShip()', () => {
       board.placeShip(4, 3, 2);
     }).toThrow();
   });
-  xtest('place ship horizontally', () => {});
-  xtest('place ship vertically', () => {});
-  xtest('reject ship placed out-of-bounds', () => {});
+  test('place ship horizontally', () => {});
+  test('place ship vertically', () => {});
+  test('reject ship placed out-of-bounds (x-axis)', () => {
+    const gameboard = new Gameboard();
+    expect(() => {
+      gameboard.placeShip(8, 2, 4);
+    }).toThrow();
+  });
+  test('reject ship placed out-of-bounds (y-axis)', () => {
+    const gameboard = new Gameboard();
+    expect(() => {
+      gameboard.placeShip(2, 11, 4);
+    }).toThrow();
+  });
   xtest('reject ship placed on top of other ship', () => {});
   xtest('reject ship placed within a tile of another ship', () => {});
 });
