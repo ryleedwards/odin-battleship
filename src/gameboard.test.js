@@ -20,6 +20,26 @@ describe('Gameboard creation', () => {
   });
 });
 
+describe('Coordinate evaluation', () => {
+  const gameboard = new Gameboard();
+  const ship = new Ship(3, 0, 'h');
+  gameboard.placeShip(4, 5, ship);
+
+  test('Eval ship', () => {
+    expect(gameboard.evaluateCoordinate(6, 5)).toBe(true);
+  });
+
+  test('Eval water', () => {
+    expect(gameboard.evaluateCoordinate(1, 1)).toBe(false);
+  });
+
+  test('Eval out-of-bounds', () => {
+    expect(
+      gameboard.evaluateCoordinate(gameboard.rows + 5, gameboard.cols + 5)
+    ).toBe(false);
+  });
+});
+
 describe('Gameboard.placeShip()', () => {
   test('places a ship given ship object', () => {
     const gameboard = new Gameboard();
@@ -75,7 +95,13 @@ describe('Gameboard.placeShip()', () => {
 });
 
 xdescribe('FUTURE // Transpose ship', () => {
-  test('transpose', () => {});
+  test('transpose', () => {
+    const gameboard = new Gameboard();
+    const ship = new Ship(3, 0, 'h');
+    gameboard.placeShip(4, 3, ship);
+    gameboard.transpose(ship);
+    expect();
+  });
 });
 
 xdescribe('Ship tracking and indexing', () => {});
