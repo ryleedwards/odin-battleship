@@ -23,6 +23,57 @@ class Gameboard {
     return rowArr;
   }
 
+  _buildDesiredCoordinates(ship, startX, startY, isTranspose) {
+    const desiredCoords = [];
+    if (isTranspose) {
+      //TODO
+    } else {
+      for (let i = 0; i < ship.length; i++) {
+        if (ship.orientation === 'h') {
+          // horizontal
+          desiredCoords.push([startX + i, startY]);
+        } else if (ship.orientation === 'v') {
+          // vertical
+          desiredCoords.push([startX, startY + i]);
+        }
+      }
+    }
+    return desiredCoords;
+  }
+
+  _doesPlacementOverlap(desiredCoords) {
+    if (this.occupied.length > 0) {
+      desiredCoords.forEach((desiredPair) => {
+        let [xDesired, yDesired] = desiredPair;
+        this.occupied.forEach((occupiedPair) => {
+          let [xOccupied, yOccupied] = occupiedPair;
+          if (xDesired === xOccupied && yDesired === yOccupied)
+            throw new Error(`Desired coordinates at ${set} are occupied`);
+        });
+      });
+    }
+  }
+
+  _isPlacementInbounds(desiredCoords) {
+    desiredCoords.forEach((desiredPair) => {
+      let [xDesired, yDesired] = desiredPair;
+      if (xDesired > this.cols)
+        throw new Error(
+          `Desired coordinates are out of bounds: ${desiredPair} :: ${xDesired} exceeds ${this.cols}`
+        );
+      if (yDesired > this.rows)
+        throw new Error(
+          `Desired coordinates are out of bounds: ${desiredPair} :: ${yDesired} exceeds ${this.rows}`
+        );
+    });
+  }
+
+  _isMaxShipsExceeded() {
+    if (this.ships.length >= this.maxShips) {
+      throw new Error('Exceeded max number of ships');
+    }
+  }
+
   evaluateCoordinate(xCoordinate, yCoordinate) {
     if (
       xCoordinate < this.rows &&
@@ -99,57 +150,6 @@ class Gameboard {
     {
       ship.index = this.ships.length;
       this.ships.push(ship);
-    }
-  }
-
-  _buildDesiredCoordinates(ship, startX, startY, isTranspose) {
-    const desiredCoords = [];
-    if (isTranspose) {
-      //TODO
-    } else {
-      for (let i = 0; i < ship.length; i++) {
-        if (ship.orientation === 'h') {
-          // horizontal
-          desiredCoords.push([startX + i, startY]);
-        } else if (ship.orientation === 'v') {
-          // vertical
-          desiredCoords.push([startX, startY + i]);
-        }
-      }
-    }
-    return desiredCoords;
-  }
-
-  _doesPlacementOverlap(desiredCoords) {
-    if (this.occupied.length > 0) {
-      desiredCoords.forEach((desiredPair) => {
-        let [xDesired, yDesired] = desiredPair;
-        this.occupied.forEach((occupiedPair) => {
-          let [xOccupied, yOccupied] = occupiedPair;
-          if (xDesired === xOccupied && yDesired === yOccupied)
-            throw new Error(`Desired coordinates at ${set} are occupied`);
-        });
-      });
-    }
-  }
-
-  _isPlacementInbounds(desiredCoords) {
-    desiredCoords.forEach((desiredPair) => {
-      let [xDesired, yDesired] = desiredPair;
-      if (xDesired > this.cols)
-        throw new Error(
-          `Desired coordinates are out of bounds: ${desiredPair} :: ${xDesired} exceeds ${this.cols}`
-        );
-      if (yDesired > this.rows)
-        throw new Error(
-          `Desired coordinates are out of bounds: ${desiredPair} :: ${yDesired} exceeds ${this.rows}`
-        );
-    });
-  }
-
-  _isMaxShipsExceeded() {
-    if (this.ships.length >= this.maxShips) {
-      throw new Error('Exceeded max number of ships');
     }
   }
 }
