@@ -1,7 +1,7 @@
 const Gameboard = require('./gameboard');
 const Ship = require('./ship');
 
-xdescribe('Gameboard creation', () => {
+describe('Gameboard creation', () => {
   const defaultGameboard = new Gameboard();
   const customGameboard = new Gameboard(8, 9);
 
@@ -46,7 +46,7 @@ describe('Gameboard.placeShip()', () => {
   });
   test('place ship horizontally', () => {
     const board = new Gameboard();
-    const hShip = new Ship(3, board.ships.length, 0, 'h');
+    const hShip = new Ship(3, 0, 'h');
     board.placeShip(3, 4, hShip);
     for (let i = 0; i < hShip.length; i++) {
       expect(board.evaluateCoordinate(3 + i, 4)).toBe(true);
@@ -54,7 +54,7 @@ describe('Gameboard.placeShip()', () => {
   });
   test('place ship vertically', () => {
     const board = new Gameboard();
-    const vShip = new Ship(3, board.ships.length, 0, 'v');
+    const vShip = new Ship(3, 0, 'v');
     board.placeShip(3, 4, vShip);
     for (let i = 0; i < vShip.length; i++) {
       expect(board.evaluateCoordinate(3, 4 + i)).toBe(true);

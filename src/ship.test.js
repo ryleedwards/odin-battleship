@@ -5,12 +5,15 @@ describe('Ship instantiation', () => {
     const ship = new Ship(3);
     expect(ship.length).toBe(3);
     expect(ship.numHits).toBe(0);
+    expect(ship.orientation).toBe('h');
   });
 
   test('Ship created with full params given', () => {
-    const ship = new Ship(3, 3);
+    const ship = new Ship(3, 3, 'v', 0);
     expect(ship.length).toBe(3);
     expect(ship.numHits).toBe(3);
+    expect(ship.orientation).toBe('v');
+    expect(ship.index).toBe(0);
   });
 
   test('Ship too large', () => {

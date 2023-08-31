@@ -1,12 +1,12 @@
 class Ship {
-  constructor(length, index, numHits = 0, orientation = 'h') {
+  constructor(length, numHits = 0, orientation = 'h', index) {
     this.setLength(length);
     this.numHits = numHits;
     // Index represents which consecutive ship I am
     // on the board. E.g. 3rd boat placed -> index = 2
     // This is done to provide distinction from other boats
-    this.index = index;
     this.orientation = orientation;
+    this.index = index;
   }
 
   setLength(newLength) {
