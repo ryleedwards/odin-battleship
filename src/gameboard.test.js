@@ -52,7 +52,7 @@ describe('Coordinate evaluation', () => {
   });
 });
 
-describe('Gameboard.placeShip()', () => {
+describe('placeShip()', () => {
   test('places a ship given ship object', () => {
     const gameboard = new Gameboard();
     const ship = new Ship(2);
@@ -106,7 +106,7 @@ describe('Gameboard.placeShip()', () => {
   });
 });
 
-describe('Gameboard.receiveAttack()', () => {
+describe('receiveAttack()', () => {
   const gameboard = new Gameboard();
   const ship = new Ship(4, 0, 'h');
   gameboard.placeShip(5, 4, ship);
@@ -121,5 +121,35 @@ describe('Gameboard.receiveAttack()', () => {
     let [missX, missY] = gameboard.misses[0];
     expect(missX).toBe(8);
     expect(missY).toBe(9);
+  });
+});
+
+describe('checkAllSunk()', () => {
+  test('all sunk using direct .hit() calls', () => {
+    const gameboard = new Gameboard();
+    const ship1 = new Ship(2);
+    gameboard.placeShip(3, 3, ship1);
+    expect(gameboard.checkAllSunk()).toBe(false);
+    for (let i = 0; i < ship1.length; i++) {
+      ship1.hit();
+    }
+    expect(ship1.isSunk()).toBe(true);
+    const ship2 = new Ship(3);
+    gameboard.placeShip(5, 5, ship2);
+    expect(gameboard.checkAllSunk()).toBe(false);
+    for (let i = 0; i < ship2.length; i++) {
+      ship2.hit();
+    }
+    expect(ship2.isSunk()).toBe(true);
+    expect(gameboard.checkAllSunk()).toBe(true);
+  });
+
+  test('all sunk using .receiveAttack() calls', () => {
+    const gameboard = new Gameboard();
+    const ship = new Ship(2);
+    gameboard.placeShip(2, 2, ship);
+    expect(gameboard.receiveAttack(2, 2)).toBe(true);
+    expect(gameboard.receiveAttack(3, 2)).toBe(true);
+    expect(gameboard.checkAllSunk()).toBe(true);
   });
 });
