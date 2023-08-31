@@ -33,7 +33,16 @@ class Gameboard {
     else return false;
   }
 
-  getShipCoordinates(ship) {}
+  getShipCoordinates(ship) {
+    const shipCoordinates = [];
+    for (let i = 0; i < this.occupied.length; i++) {
+      let [x, y] = this.occupied[i];
+      if (parseInt(this.board[y][x]) === parseInt(ship.index)) {
+        shipCoordinates.push(this.occupied[i]);
+      }
+    }
+    return shipCoordinates;
+  }
 
   placeShip(xCoordinate, yCoordinate, ship, isTranspose) {
     // if passed length instead of ship object, it can be assumed
