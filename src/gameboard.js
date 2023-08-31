@@ -96,9 +96,11 @@ class Gameboard {
         this.occupied.push([xCoordinate, yCoordinate + i]);
       }
     }
+    // Add ship to ships array
+    this.ships.push(ship);
   }
 
-  _transpose(xCoordinate, yCoordinate, shipLength) {}
+  transpose(ship) {}
 
   _checkNeighbor(xCoordinate, yCoordinate) {}
 }
