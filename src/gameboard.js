@@ -80,9 +80,21 @@ class Gameboard {
     }
 
     // All checks pass, proceed with placement
-    for (let i = 0; i < ship.length; i++) {
-      this.board[yCoordinate][xCoordinate + i] = ship.index;
-      this.occupied.push([xCoordinate + i, yCoordinate]);
+
+    // horizontal placement
+    if (ship.orientation === 'h') {
+      for (let i = 0; i < ship.length; i++) {
+        this.board[yCoordinate][xCoordinate + i] = ship.index;
+        this.occupied.push([xCoordinate + i, yCoordinate]);
+      }
+    }
+
+    // vertical placement
+    if (ship.orientation === 'v') {
+      for (let i = 0; i < ship.length; i++) {
+        this.board[yCoordinate + i][xCoordinate] = ship.index;
+        this.occupied.push([xCoordinate, yCoordinate + i]);
+      }
     }
   }
 
