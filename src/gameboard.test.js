@@ -72,7 +72,6 @@ describe('Gameboard.placeShip()', () => {
       gameboard.placeShip(2, 11, 4);
     }).toThrow();
   });
-  test('reject ship placed within a tile of another ship', () => {});
 });
 
 xdescribe('FUTURE // Transpose ship', () => {
