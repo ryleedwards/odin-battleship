@@ -2,13 +2,22 @@ const Ship = require('./ship');
 const tempShip = new Ship(3);
 
 class Gameboard {
-  constructor(rows = 10, cols = 10, maxShips = 5, ships = [], occupied = []) {
+  constructor(
+    rows = 10,
+    cols = 10,
+    maxShips = 5,
+    ships = [],
+    occupied = [],
+    misses = []
+  ) {
     this.rows = rows;
     this.cols = cols;
     this.board = this._generateBoard(this.rows, this.cols);
     this.maxShips = maxShips;
     this.ships = ships;
+    // occupied[] contains the occupied coordinates
     this.occupied = occupied;
+    this.misses = misses;
   }
 
   _generateBoard() {
@@ -150,6 +159,20 @@ class Gameboard {
     {
       ship.index = this.ships.length;
       this.ships.push(ship);
+    }
+  }
+
+  receiveAttack(xCoordinate, yCoordinate) {
+    // Hits a ship
+    if (this.evaluateCoordinate(xCoordinate, yCoordinate)) {
+      const shipIndex = this.board[yCoordinate][xCoordinate];
+      this.ships[shipIndex].hit();
+      return true;
+    }
+    // Misses
+    else {
+      this.misses.push([xCoordinate, yCoordinate]);
+      return false;
     }
   }
 }
