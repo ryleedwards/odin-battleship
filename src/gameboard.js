@@ -42,10 +42,10 @@ class Gameboard {
     for (let i = 0; i < ship.length; i++) {
       if (ship.orientation === 'h') {
         // horizontal
-        desiredCoords.push([xCoordinate, yCoordinate + i]);
+        desiredCoords.push([xCoordinate + i, yCoordinate]);
       } else if (ship.orientation === 'v') {
         // vertical
-        desiredCoords.push([xCoordinate + i, yCoordinate]);
+        desiredCoords.push([xCoordinate, yCoordinate + i]);
       }
     }
 
@@ -62,6 +62,17 @@ class Gameboard {
     }
 
     // do desired coordinates spill over available board space?
+    desiredCoords.forEach((desiredPair) => {
+      let [xDesired, yDesired] = desiredPair;
+      if (xDesired > this.cols)
+        throw new Error(
+          `Desired coordinates are out of bounds: ${desiredPair} :: ${xDesired} exceeds ${this.cols}`
+        );
+      if (yDesired > this.rows)
+        throw new Error(
+          `Desired coordinates are out of bounds: ${desiredPair} :: ${yDesired} exceeds ${this.rows}`
+        );
+    });
 
     // has maxShips allowed been exceeded?
     if (this.ships.length >= this.maxShips) {
