@@ -8,7 +8,7 @@ class Gameboard {
     maxShips = 5,
     ships = [],
     occupied = new Set(),
-    misses = [],
+    misses = new Set(),
     hits = []
   ) {
     this.rows = rows;
@@ -176,7 +176,7 @@ class Gameboard {
     }
     // Misses
     else {
-      this.misses.push([xCoordinate, yCoordinate]);
+      this.misses.add([xCoordinate, yCoordinate]);
       return false;
     }
   }
