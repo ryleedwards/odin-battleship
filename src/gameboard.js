@@ -9,7 +9,7 @@ class Gameboard {
     ships = [],
     occupied = new Set(),
     misses = new Set(),
-    hits = []
+    hits = new Set()
   ) {
     this.rows = rows;
     this.cols = cols;
@@ -171,7 +171,7 @@ class Gameboard {
     if (this.evaluateCoordinate(xCoordinate, yCoordinate)) {
       const shipIndex = this.board[yCoordinate][xCoordinate];
       this.ships[shipIndex].hit();
-      this.hits.push([xCoordinate, yCoordinate]);
+      this.hits.add([xCoordinate, yCoordinate]);
       return true;
     }
     // Misses
