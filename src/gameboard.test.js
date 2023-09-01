@@ -113,7 +113,8 @@ describe('receiveAttack()', () => {
   test('Ship attacked', () => {
     expect(gameboard.receiveAttack(5, 4)).toBe(true);
     expect(ship.numHits).toBe(1);
-    expect(gameboard.hits[0].toString()).toBe('5,4');
+    const hitsSetIterator = gameboard.hits.values();
+    expect(hitsSetIterator.next().value.toString()).toBe('5,4');
   });
   test('Attack misses', () => {
     // correctly returns false
