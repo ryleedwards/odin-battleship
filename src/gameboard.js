@@ -7,7 +7,7 @@ class Gameboard {
     cols = 10,
     maxShips = 5,
     ships = [],
-    occupied = [],
+    occupied = new Set(),
     misses = [],
     hits = []
   ) {
@@ -53,7 +53,7 @@ class Gameboard {
   }
 
   _doesPlacementOverlap(desiredCoords) {
-    if (this.occupied.length > 0) {
+    if (this.occupied.size > 0) {
       desiredCoords.forEach((desiredPair) => {
         let [xDesired, yDesired] = desiredPair;
         this.occupied.forEach((occupiedPair) => {
@@ -97,12 +97,22 @@ class Gameboard {
 
   getShipCoordinates(ship) {
     const shipCoordinates = [];
-    for (let i = 0; i < this.occupied.length; i++) {
+    /*
+    for (let i = 0; i < this.occupied.size; i++) {
       let [x, y] = this.occupied[i];
       if (parseInt(this.board[y][x]) === parseInt(ship.index)) {
         shipCoordinates.push(this.occupied[i]);
       }
     }
+    */
+
+    for (const value of this.occupied) {
+      let [x, y] = value;
+      if (parseInt(this.board[y][x]) === parseInt(ship.index)) {
+        shipCoordinates.push(value);
+      }
+    }
+
     return shipCoordinates;
   }
 
@@ -144,7 +154,7 @@ class Gameboard {
     if (ship.orientation === 'h') {
       for (let i = 0; i < ship.length; i++) {
         this.board[yCoordinate][xCoordinate + i] = ship.index;
-        this.occupied.push([xCoordinate + i, yCoordinate]);
+        this.occupied.add([xCoordinate + i, yCoordinate]);
       }
     }
 
@@ -152,7 +162,7 @@ class Gameboard {
     if (ship.orientation === 'v') {
       for (let i = 0; i < ship.length; i++) {
         this.board[yCoordinate + i][xCoordinate] = ship.index;
-        this.occupied.push([xCoordinate, yCoordinate + i]);
+        this.occupied.add([xCoordinate, yCoordinate + i]);
       }
     }
 
