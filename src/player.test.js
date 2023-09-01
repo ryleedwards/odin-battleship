@@ -56,7 +56,7 @@ describe('AI Behavior', () => {
       ai.assignGameboard(new Gameboard());
 
       expect(typeof ai.generateAttack()).toBe('boolean');
-      expect(player.gameboard.misses.length > 0).toBe(true);
+      expect(player.gameboard.misses.size > 0).toBe(true);
     });
 
     test('Generates attack >> hit', () => {});
