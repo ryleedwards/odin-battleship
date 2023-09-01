@@ -1,7 +1,5 @@
 class Player {
-  constructor(isAI) {
-    this.isAI = isAI;
-  }
+  constructor() {}
 
   gameboard = this.assignGameboard();
 
