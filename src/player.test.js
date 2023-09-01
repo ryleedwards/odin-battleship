@@ -1,4 +1,5 @@
-const Player = require('./player.js');
+const Player = require('./player.js').Player;
+const AI = require('./player.js').AI;
 const Gameboard = require('./gameboard.js');
 const Ship = require('./ship.js');
 
@@ -26,4 +27,17 @@ test('Player attacks and hits', () => {
   player2.gameboard.placeShip(5, 5, new Ship(3));
 
   expect(player1.attack(player2.gameboard, 5, 5)).toBe(true);
+});
+
+describe('AI Behavior', () => {
+  test('Instantiate AI', () => {
+    const ai = new AI();
+    expect(ai instanceof AI).toBe(true);
+    expect(Object.getPrototypeOf(ai) instanceof Player).toBe(true);
+  });
+
+  xtest('Generates attack', () => {
+    const player = new Player();
+    const ai = new AI();
+  });
 });
