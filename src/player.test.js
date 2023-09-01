@@ -44,14 +44,21 @@ describe('AI Behavior', () => {
   });
 
   test('Assign opponent', () => {
-    const ai = new AI();
     const player = new Player();
-    ai.assignOpponent(player);
+    const ai = new AI(player);
     expect(ai.opponent).toBe(player);
   });
+  describe('Attacks', () => {
+    test('Generates attack >> miss', () => {
+      const player = new Player();
+      player.assignGameboard(new Gameboard());
+      const ai = new AI(player);
+      ai.assignGameboard(new Gameboard());
 
-  xtest('Generates attack', () => {
-    const player = new Player();
-    const ai = new AI();
+      expect(typeof ai.generateAttack()).toBe('boolean');
+      expect(player.gameboard.misses.length > 0).toBe(true);
+    });
+
+    test('Generates attack >> hit', () => {});
   });
 });
