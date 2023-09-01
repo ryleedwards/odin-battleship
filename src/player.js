@@ -2,13 +2,18 @@ class Player {
   constructor() {}
 
   gameboard = this.assignGameboard();
+  opponent = this.assignOpponent();
 
   assignGameboard(gameboard) {
     this.gameboard = gameboard;
   }
 
-  attack(targetGameboard, xCoordinate, yCoordinate) {
-    if (targetGameboard.receiveAttack(xCoordinate, yCoordinate)) {
+  assignOpponent(opponent) {
+    this.opponent = opponent;
+  }
+
+  attack(xCoordinate, yCoordinate) {
+    if (this.opponent.gameboard.receiveAttack(xCoordinate, yCoordinate)) {
       // HANDLE HIT
       return true;
     } else {
@@ -19,9 +24,9 @@ class Player {
 }
 
 class AI extends Player {
-  constructor(opponentPlayer) {
+  constructor(opponent) {
     super();
-    this.opponentPlayer = opponentPlayer;
+    this.assignOpponent(opponent);
   }
 
   generateAttack() {
@@ -32,7 +37,7 @@ class AI extends Player {
       Math.random() * this.opponentPlayer.gameboard.rows
     );
 
-    return this.attack(this.opponentPlayer, randomX, randomY);
+    return this.attack(this.opponent, randomX, randomY);
   }
 }
 
