@@ -30,12 +30,8 @@ class AI extends Player {
   }
 
   generateAttack() {
-    const randomX = Math.floor(
-      Math.random() * this.opponentPlayer.gameboard.cols
-    );
-    const randomY = Math.floor(
-      Math.random() * this.opponentPlayer.gameboard.rows
-    );
+    const randomX = Math.floor(Math.random() * this.opponent.gameboard.cols);
+    const randomY = Math.floor(Math.random() * this.opponent.gameboard.rows);
 
     return this.attack(this.opponent, randomX, randomY);
   }
