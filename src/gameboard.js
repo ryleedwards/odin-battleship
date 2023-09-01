@@ -8,7 +8,8 @@ class Gameboard {
     maxShips = 5,
     ships = [],
     occupied = [],
-    misses = []
+    misses = [],
+    hits = []
   ) {
     this.rows = rows;
     this.cols = cols;
@@ -18,6 +19,7 @@ class Gameboard {
     // occupied[] contains the occupied coordinates
     this.occupied = occupied;
     this.misses = misses;
+    this.hits = hits;
   }
 
   _generateBoard() {
@@ -167,6 +169,7 @@ class Gameboard {
     if (this.evaluateCoordinate(xCoordinate, yCoordinate)) {
       const shipIndex = this.board[yCoordinate][xCoordinate];
       this.ships[shipIndex].hit();
+      this.hits.push([xCoordinate, yCoordinate]);
       return true;
     }
     // Misses
