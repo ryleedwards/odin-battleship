@@ -119,7 +119,9 @@ describe('receiveAttack()', () => {
     // correctly returns false
     expect(gameboard.receiveAttack(8, 9)).toBe(false);
     // correctly stores missed coordinate
-    let [missX, missY] = gameboard.misses[0];
+    const setIterator = gameboard.misses.values();
+    let [missX, missY] = setIterator.next().value;
+
     expect(missX).toBe(8);
     expect(missY).toBe(9);
   });
