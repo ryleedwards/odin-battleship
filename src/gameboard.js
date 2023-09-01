@@ -97,14 +97,6 @@ class Gameboard {
 
   getShipCoordinates(ship) {
     const shipCoordinates = [];
-    /*
-    for (let i = 0; i < this.occupied.size; i++) {
-      let [x, y] = this.occupied[i];
-      if (parseInt(this.board[y][x]) === parseInt(ship.index)) {
-        shipCoordinates.push(this.occupied[i]);
-      }
-    }
-    */
 
     for (const value of this.occupied) {
       let [x, y] = value;
