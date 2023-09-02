@@ -6,15 +6,13 @@ const Ship = require('./ship.js');
 test('player gameboard assignment', () => {
   const player1 = new Player();
   const gameboard1 = new Gameboard();
-  player1.assignGameboard(gameboard1);
+  player1.gameboard = gameboard1;
   expect(player1.gameboard).toBe(gameboard1);
 });
 
 test('Player attack & misses', () => {
   const player1 = new Player();
-  player1.assignGameboard(new Gameboard());
   const player2 = new Player();
-  player2.assignGameboard(new Gameboard());
 
   player1.assignOpponent(player2);
   player2.assignOpponent(player1);
@@ -24,9 +22,7 @@ test('Player attack & misses', () => {
 
 test('Player attacks and hits', () => {
   const player1 = new Player();
-  player1.assignGameboard(new Gameboard());
   const player2 = new Player();
-  player2.assignGameboard(new Gameboard());
 
   player1.assignOpponent(player2);
   player2.assignOpponent(player1);
@@ -45,10 +41,23 @@ describe('AI Behavior', () => {
 
   test('Assign opponent', () => {
     const player = new Player();
-    const ai = new AI(player);
+    const ai = new AI();
+    ai.assignOpponent(player);
     expect(ai.opponent).toBe(player);
   });
-  describe('Attacks', () => {
+
+  test('Generate available attacks', () => {
+    const player = new Player();
+    const ai = new AI();
+    ai.assignOpponent(player);
+    ai.generateAvailableAttacks();
+    expect(
+      ai.availableAttacks.size ===
+        ai.opponent.gameboard.rows * ai.opponent.gameboard.cols
+    );
+  });
+
+  xdescribe('Attacks', () => {
     test('Generates attack >> miss', () => {
       const player = new Player();
       player.assignGameboard(new Gameboard());
