@@ -6,7 +6,6 @@ class Player {
   }
 
   opponent = this.assignOpponent();
-
   assignOpponent(opponent) {
     this.opponent = opponent;
   }
@@ -27,20 +26,29 @@ class AI extends Player {
     super();
   }
 
-  availableAttacks = new Set();
+  availableAttacks = [];
 
   generateAvailableAttacks() {
     const rows = this.opponent.gameboard.rows;
     const cols = this.opponent.gameboard.cols;
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
-        this.availableAttacks.add([x, y]);
+        this.availableAttacks.push(`${x},${y}`);
       }
     }
   }
 
   generateAttack() {
-    //return this.attack(xCoordinate, yCoordinate);
+    // pick random [x,y] from availableAttacks
+    const targetCoordinatesIndex = Math.floor(
+      Math.random() * this.availableAttacks.length
+    );
+    const targetCoordinates = this.availableAttacks[targetCoordinatesIndex];
+    this.availableAttacks.splice(targetCoordinatesIndex, 1);
+    const x = targetCoordinates.slice(0, 1);
+    const y = targetCoordinates.slice(2);
+
+    return this.attack(x, y);
   }
 }
 
