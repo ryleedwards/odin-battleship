@@ -52,17 +52,18 @@ describe('AI Behavior', () => {
     ai.assignOpponent(player);
     ai.generateAvailableAttacks();
     expect(
-      ai.availableAttacks.size ===
+      ai.availableAttacks.length ===
         ai.opponent.gameboard.rows * ai.opponent.gameboard.cols
     );
   });
 
-  xdescribe('Attacks', () => {
+  describe('Attacks', () => {
     test('Generates attack >> miss', () => {
       const player = new Player();
-      player.assignGameboard(new Gameboard());
-      const ai = new AI(player);
-      ai.assignGameboard(new Gameboard());
+      const ai = new AI();
+      player.assignOpponent(ai);
+      ai.assignOpponent(player);
+      ai.generateAvailableAttacks();
 
       expect(typeof ai.generateAttack()).toBe('boolean');
       expect(player.gameboard.misses.size > 0).toBe(true);
@@ -70,19 +71,21 @@ describe('AI Behavior', () => {
 
     test('Generates attack >> hit', () => {
       const player = new Player();
-      player.assignGameboard(new Gameboard());
-      const ai = new AI(player);
-      ai.assignGameboard(new Gameboard());
+      const ai = new AI();
+      player.assignOpponent(ai);
+      ai.assignOpponent(player);
+      ai.generateAvailableAttacks();
 
       player.gameboard.placeShip(3, 3, 5);
 
+      // brute force max # of attacks on opp board
+      //   to force a successful hit
       const totalTiles =
         ai.opponent.gameboard.rows * ai.opponent.gameboard.cols;
       let successfulHit = false;
       for (let i = 0; i < totalTiles; i++) {
         successfulHit = ai.generateAttack();
         if (successfulHit === true) {
-          console.log(`Successful AI hit after ${i} attempts`);
           return;
         }
       }
