@@ -1,12 +1,11 @@
+const Gameboard = require('./gameboard');
+
 class Player {
-  constructor() {}
-
-  gameboard = this.assignGameboard();
-  opponent = this.assignOpponent();
-
-  assignGameboard(gameboard) {
+  constructor(gameboard = new Gameboard()) {
     this.gameboard = gameboard;
   }
+
+  opponent = this.assignOpponent();
 
   assignOpponent(opponent) {
     this.opponent = opponent;
@@ -24,16 +23,24 @@ class Player {
 }
 
 class AI extends Player {
-  constructor(opponent) {
+  constructor() {
     super();
-    this.assignOpponent(opponent);
+  }
+
+  availableAttacks = new Set();
+
+  generateAvailableAttacks() {
+    const rows = this.opponent.gameboard.rows;
+    const cols = this.opponent.gameboard.cols;
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        this.availableAttacks.add([x, y]);
+      }
+    }
   }
 
   generateAttack() {
-    const randomX = Math.floor(Math.random() * this.opponent.gameboard.cols);
-    const randomY = Math.floor(Math.random() * this.opponent.gameboard.rows);
-
-    return this.attack(this.opponent, randomX, randomY);
+    //return this.attack(xCoordinate, yCoordinate);
   }
 }
 
