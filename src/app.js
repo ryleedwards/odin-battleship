@@ -1,3 +1,4 @@
+import css from './style.css';
 console.log('hello world');
 
 const add = (x, y) => {
