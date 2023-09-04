@@ -99,6 +99,12 @@ main {
   width: 512px;
 }
 
+.board {
+  background-color: #7fcddf;
+  border: solid 1px black;
+  height: 512px;
+}
+
 .divider.container {
   height: 10%;
   display: flex;
@@ -110,10 +116,4 @@ main {
   height: 8px;
   width: 100%;
   background-color: black;
-}
-
-.board {
-  background-color: #7fcddf;
-  border: solid 1px black;
-  height: 512px;
 }
