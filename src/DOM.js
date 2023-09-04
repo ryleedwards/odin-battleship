@@ -7,8 +7,8 @@ const dom = (() => {
   };
 
   const init = (player, ai) => {
-    renderGameBoard(playerBoardDiv, player);
-    renderGameBoard(aiBoardDiv, ai);
+    renderGameBoard(playerBoardDiv, player.gameboard);
+    renderGameBoard(aiBoardDiv, ai.gameboard);
   };
   return { init };
 })();
