@@ -6,7 +6,11 @@ const dom = (() => {
     gb.board.forEach((tile) => {});
   };
 
-  return { renderGameBoard };
+  const init = (player, ai) => {
+    renderGameBoard(playerBoardDiv, player);
+    renderGameBoard(aiBoardDiv, ai);
+  };
+  return { init };
 })();
 
 module.exports = dom;
