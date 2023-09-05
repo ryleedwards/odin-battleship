@@ -1,4 +1,5 @@
 const receiveUserAttack = require('./game').receiveUserAttack;
+const callAiAttack = require('./game').callAiAttack;
 
 const dom = (() => {
   const playerBoardDiv = document.querySelector('.board.player');
@@ -13,9 +14,23 @@ const dom = (() => {
       if (!e.target.classList.contains('hidden')) return;
 
       // proceed with valid attack
-      console.log(receiveUserAttack(e.target));
-      handleAttackResult(receiveUserAttack(cellDiv), cellDiv);
+      // unpack target cell data...
+      let xCoordinate = e.target.dataset.col;
+      let yCoordinate = e.target.dataset.row;
+
+      // ... to pass to game.receiveUserAttack(x,y)
+      handleAttackResult(receiveUserAttack(xCoordinate, yCoordinate), cellDiv);
+      setTimeout(() => {
+        callAiAttack();
+      }, 1000);
     });
+  };
+
+  const showAiAttack = (result, xCoordinate, yCoordinate) => {
+    const targetDiv = document.querySelector(
+      '.cell[data-row="0"][data-col="5"][data-player=true]'
+    );
+    console.log(targetDiv);
   };
 
   const handleAttackResult = (attackResult, cellDiv) => {
