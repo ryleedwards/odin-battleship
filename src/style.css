@@ -100,9 +100,10 @@ main {
 }
 
 .board {
-  background-color: #7fcddf;
   border: solid 1px black;
   height: 512px;
+  display: flex;
+  flex-direction: column;
 }
 
 .divider.container {
@@ -116,4 +117,31 @@ main {
   height: 8px;
   width: 100%;
   background-color: black;
+}
+
+.row {
+  display: flex;
+  flex-grow: 1;
+}
+
+.cell {
+  flex-grow: 1;
+  border: solid 1px black;
+}
+
+.water {
+  background-color: #7fcddf;
+}
+
+.boat {
+  background-color: gray;
+}
+
+.hidden {
+  /* -- TODO -- */
+  background-color: darkblue;
+}
+
+.hit {
+  background-color: coral;
 }
