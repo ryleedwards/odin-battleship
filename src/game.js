@@ -11,6 +11,7 @@ const player = new Player();
 const ai = new AI();
 player.assignOpponent(ai);
 ai.assignOpponent(player);
+ai.generateAvailableAttacks();
 
 // generate default ship placements
 const generateDefaultPlayerShips = (() => {
@@ -49,20 +50,15 @@ dom.init(player, ai);
 // Game over -- declare winner
 // ---TODO---
 
-// Method for receiving user attack
-function receiveUserAttack(targetDiv) {
-  console.log(targetDiv);
-  // unpack target cell data
-  let xCoordinate = targetDiv.dataset.col;
-  let yCoordinate = targetDiv.dataset.row;
+// Method for receiving user attack from DOM event
+function receiveUserAttack(xCoordinate, yCoordinate) {
   if (player.attack(xCoordinate, yCoordinate)) {
     return 'hit';
   } else return 'miss';
-  callAiAttack();
 }
 
 function callAiAttack() {
   ai.generateAttack();
 }
 
-export { receiveUserAttack };
+export { receiveUserAttack, callAiAttack };
