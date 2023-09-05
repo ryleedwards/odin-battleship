@@ -56,8 +56,11 @@ function receiveUserAttack(targetDiv) {
   if (player.attack(xCoordinate, yCoordinate)) {
     return 'hit';
   } else return 'miss';
+  callAiAttack();
 }
 
-function callAiAttack() {}
+function callAiAttack() {
+  ai.generateAttack();
+}
 
 export { receiveUserAttack };
