@@ -1,10 +1,14 @@
+import css from './style.css';
 const Ship = require('./ship');
 const Player = require('./player').Player;
 const AI = require('./player').AI;
+const dom = require('./DOM');
 
+// Create player and AI objects
 const player = new Player();
 const ai = new AI();
 
+// Create and place player ships
 const pShip0 = new Ship(5, 0, 'v');
 player.gameboard.placeShip(2, 2, pShip0);
 const pShip1 = new Ship(4, 0, 'h');
@@ -16,6 +20,7 @@ player.gameboard.placeShip(1, 0, pShip3);
 const pShip4 = new Ship(2, 0, 'v');
 player.gameboard.placeShip(7, 3, pShip4);
 
+// Create and place AI ships
 const aiShip0 = new Ship(5, 0, 'v');
 ai.gameboard.placeShip(2, 2, pShip0);
 const aiShip1 = new Ship(4, 0, 'h');
@@ -27,4 +32,5 @@ ai.gameboard.placeShip(1, 0, pShip3);
 const aiShip4 = new Ship(2, 0, 'v');
 ai.gameboard.placeShip(7, 3, pShip4);
 
-module.exports = { player, ai };
+// Initialize DOM
+dom.init(player, ai);
