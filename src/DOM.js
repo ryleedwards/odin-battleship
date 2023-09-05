@@ -1,19 +1,31 @@
+const receiveUserAttack = require('./game').receiveUserAttack;
+
 const dom = (() => {
   const playerBoardDiv = document.querySelector('.board.player');
   const aiBoardDiv = document.querySelector('.board.ai');
 
   const addCellListener = (cellDiv) => {
     cellDiv.addEventListener('click', (e) => {
-      console.log(e.target);
-      // VALID ATTACK -- player clicks opponent's board , it is a hidden cell
-      if (
-        (e.target.dataset.player = false) &&
-        e.target.classList.contains('hidden')
-      ) {
-      }
+      // guardrails against...
+      // ... user clicking own board
+      if (e.target.dataset.player === true) return;
+      // ... user clicking known cell on opponent board
+      if (!e.target.classList.contains('hidden')) return;
 
-      //
+      // proceed with valid attack
+      console.log(receiveUserAttack(e.target));
+      handleAttackResult(receiveUserAttack(cellDiv), cellDiv);
     });
+  };
+
+  const handleAttackResult = (attackResult, cellDiv) => {
+    cellDiv.classList.remove('hidden');
+    if (attackResult === 'hit') {
+      cellDiv.classList.add('hit');
+    }
+    if (attackResult === 'miss') {
+      cellDiv.classList.add('water');
+    }
   };
 
   const addCellHTMLAttributes = (
