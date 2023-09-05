@@ -78,7 +78,7 @@ const dom = (() => {
     renderGameboard(playerBoardDiv, player.gameboard, false);
     renderGameboard(aiBoardDiv, ai.gameboard, true);
   };
-  return { init };
+  return { init, handleAttackResult };
 })();
 
 module.exports = dom;
