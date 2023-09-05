@@ -45,18 +45,31 @@ const generateDefaultAiShips = (() => {
 // Initialize DOM
 dom.init(player, ai);
 
-// Game loop - triggered by user attack
+function evaluateWinCondition() {
+  if (player.gameboard.checkAllSunk()) {
+    declareWinner(ai);
+  }
+  if (ai.gameboard.checkAllSunk()) {
+    declareWinner(player);
+  }
+}
 
-// Game over -- declare winner
-// ---TODO---
+function declareWinner(winner) {
+  if (winner === player) dom.displayWinner('YOU WON!', true);
+  if (winner === ai) dom.displayWinner('GAME OVER', false);
+}
 
 // Method for receiving user attack from DOM event
 function receiveUserAttack(xCoordinate, yCoordinate) {
-  return player.attack(xCoordinate, yCoordinate);
+  const result = player.attack(xCoordinate, yCoordinate);
+  evaluateWinCondition();
+  return result;
 }
 
 function callAiAttack() {
-  return ai.generateAttack();
+  const result = ai.generateAttack();
+  evaluateWinCondition();
+  return result;
 }
 
 export { receiveUserAttack, callAiAttack };
