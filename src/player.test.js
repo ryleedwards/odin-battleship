@@ -65,7 +65,7 @@ describe('AI Behavior', () => {
       ai.assignOpponent(player);
       ai.generateAvailableAttacks();
 
-      expect(typeof ai.generateAttack()).toBe('boolean');
+      expect(typeof ai.generateAttack().result).toBe('boolean');
       expect(player.gameboard.misses.size > 0).toBe(true);
     });
 
@@ -84,8 +84,17 @@ describe('AI Behavior', () => {
         ai.opponent.gameboard.rows * ai.opponent.gameboard.cols;
       let successfulHit = false;
       for (let i = 0; i < totalTiles; i++) {
-        successfulHit = ai.generateAttack();
+        const attackResultObj = ai.generateAttack();
+        const attackX = attackResultObj.x;
+        const attackY = attackResultObj.y;
+        successfulHit = attackResultObj.result;
         if (successfulHit === true) {
+          expect(attackX >= 0 && attackX < ai.opponent.gameboard.cols).toBe(
+            true
+          );
+          expect(attackY >= 0 && attackY < ai.opponent.gameboard.rows).toBe(
+            true
+          );
           return;
         }
       }
