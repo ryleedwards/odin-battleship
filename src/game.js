@@ -52,9 +52,7 @@ dom.init(player, ai);
 
 // Method for receiving user attack from DOM event
 function receiveUserAttack(xCoordinate, yCoordinate) {
-  if (player.attack(xCoordinate, yCoordinate)) {
-    return 'hit';
-  } else return 'miss';
+  return player.attack(xCoordinate, yCoordinate);
 }
 
 function callAiAttack() {
