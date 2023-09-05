@@ -2,6 +2,20 @@ const dom = (() => {
   const playerBoardDiv = document.querySelector('.board.player');
   const aiBoardDiv = document.querySelector('.board.ai');
 
+  const addCellListener = (cellDiv) => {
+    cellDiv.addEventListener('click', (e) => {
+      console.log(e.target);
+      // VALID ATTACK -- player clicks opponent's board , it is a hidden cell
+      if (
+        (e.target.dataset.player = false) &&
+        e.target.classList.contains('hidden')
+      ) {
+      }
+
+      //
+    });
+  };
+
   const addCellHTMLAttributes = (
     cellDiv,
     gb,
@@ -41,6 +55,7 @@ const dom = (() => {
         cellDiv.dataset.row = r;
         cellDiv.dataset.col = c;
         addCellHTMLAttributes(cellDiv, gb, c, r, isOpponent);
+        addCellListener(cellDiv);
         rowDiv.appendChild(cellDiv);
       }
       gbDiv.appendChild(rowDiv);
