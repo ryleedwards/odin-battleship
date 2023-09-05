@@ -144,8 +144,24 @@ main {
 
 .hit {
   background-color: coral;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hit > svg {
+  position: absolute;
+  font-size: 2rem;
 }
 
 .miss {
   background-color: #7fcddf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miss > svg {
+  position: absolute;
+  font-size: 2rem;
 }
