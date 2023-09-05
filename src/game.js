@@ -1,4 +1,6 @@
 import css from './style.css';
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
 const Ship = require('./ship');
 const Player = require('./player').Player;
 const AI = require('./player').AI;
