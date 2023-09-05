@@ -34,17 +34,17 @@ const dom = (() => {
       `.cell[data-row="${yCoordinate}"][data-col="${xCoordinate}"][data-player=true]`
     );
     console.log(targetDiv);
+    handleAttackResult(resultBool, targetDiv);
   };
 
   const handleAttackResult = (attackResult, cellDiv) => {
     cellDiv.classList.remove('hidden');
-    if (attackResult === 'hit') {
+    if (attackResult) {
       cellDiv.classList.add('hit');
       const hitIcon = document.createElement('i');
       hitIcon.classList.add('fa-solid', 'fa-explosion');
       cellDiv.appendChild(hitIcon);
-    }
-    if (attackResult === 'miss') {
+    } else {
       cellDiv.classList.add('miss');
       const missIcon = document.createElement('i');
       missIcon.classList.add('fa-solid', 'fa-burst');
