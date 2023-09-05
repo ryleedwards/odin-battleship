@@ -58,7 +58,7 @@ function receiveUserAttack(xCoordinate, yCoordinate) {
 }
 
 function callAiAttack() {
-  ai.generateAttack();
+  return ai.generateAttack();
 }
 
 export { receiveUserAttack, callAiAttack };
