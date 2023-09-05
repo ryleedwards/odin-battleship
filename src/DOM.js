@@ -98,11 +98,20 @@ const dom = (() => {
     }
   };
 
+  const displayWinner = (message, playerWin) => {
+    const msgH1 = document.createElement('h1');
+    msgH1.classList.add('message');
+    msgH1.textContent = message;
+    if (playerWin) msgH1.classList.add('win');
+    else msgH1.classList.add('lose');
+    document.querySelector('main').appendChild(msgH1);
+  };
+
   const init = (player, ai) => {
     renderGameboard(playerBoardDiv, player.gameboard, false);
     renderGameboard(aiBoardDiv, ai.gameboard, true);
   };
-  return { init, handleAttackResult };
+  return { init, handleAttackResult, displayWinner };
 })();
 
 module.exports = dom;
