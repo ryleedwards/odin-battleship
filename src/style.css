@@ -166,3 +166,18 @@ main {
   position: absolute;
   font-size: 2rem;
 }
+
+.message {
+  font-size: 6rem;
+  position: absolute;
+  background-color: black;
+  padding: 16px;
+  border-radius: 24px;
+}
+
+.message.win {
+  color: green;
+}
+.message.lose {
+  color: red;
+}
