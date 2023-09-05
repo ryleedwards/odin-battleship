@@ -48,7 +48,9 @@ class AI extends Player {
     const x = targetCoordinates.slice(0, 1);
     const y = targetCoordinates.slice(2);
 
-    return this.attack(x, y);
+    const result = this.attack(x, y);
+
+    return { result: result, x: x, y: y };
   }
 }
 
