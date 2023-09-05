@@ -59,7 +59,9 @@ class Gameboard {
         this.occupied.forEach((occupiedPair) => {
           let [xOccupied, yOccupied] = occupiedPair;
           if (xDesired === xOccupied && yDesired === yOccupied)
-            throw new Error(`Desired coordinates at ${set} are occupied`);
+            throw new Error(
+              `Desired coordinates at ${desiredCoords} are occupied`
+            );
         });
       });
     }
