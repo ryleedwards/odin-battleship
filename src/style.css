@@ -143,7 +143,7 @@ main {
 }
 
 .hit {
-  background-color: coral;
+  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,6 +152,7 @@ main {
 .hit > svg {
   position: absolute;
   font-size: 2rem;
+  color: red;
 }
 
 .miss {
