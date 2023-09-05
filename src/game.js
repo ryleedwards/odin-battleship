@@ -7,7 +7,10 @@ const dom = require('./DOM');
 // Create player and AI objects
 const player = new Player();
 const ai = new AI();
+player.assignOpponent(ai);
+ai.assignOpponent(player);
 
+// generate default ship placements
 const generateDefaultPlayerShips = (() => {
   // Create and place player ships
   const pShip0 = new Ship(5, 0, 'v');
@@ -38,3 +41,23 @@ const generateDefaultAiShips = (() => {
 
 // Initialize DOM
 dom.init(player, ai);
+
+// Game loop - triggered by user attack
+
+// Game over -- declare winner
+// ---TODO---
+
+// Method for receiving user attack
+function receiveUserAttack(targetDiv) {
+  console.log(targetDiv);
+  // unpack target cell data
+  let xCoordinate = targetDiv.dataset.col;
+  let yCoordinate = targetDiv.dataset.row;
+  if (player.attack(xCoordinate, yCoordinate)) {
+    return 'hit';
+  } else return 'miss';
+}
+
+function callAiAttack() {}
+
+export { receiveUserAttack };
