@@ -145,3 +145,7 @@ main {
 .hit {
   background-color: coral;
 }
+
+.miss {
+  background-color: #7fcddf;
+}
