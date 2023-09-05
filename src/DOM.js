@@ -21,14 +21,17 @@ const dom = (() => {
       // ... to pass to game.receiveUserAttack(x,y)
       handleAttackResult(receiveUserAttack(xCoordinate, yCoordinate), cellDiv);
       setTimeout(() => {
-        callAiAttack();
+        showAiAttack(callAiAttack());
       }, 1000);
     });
   };
 
-  const showAiAttack = (result, xCoordinate, yCoordinate) => {
+  const showAiAttack = (resultObj) => {
+    const resultBool = resultObj.result;
+    const xCoordinate = resultObj.x;
+    const yCoordinate = resultObj.y;
     const targetDiv = document.querySelector(
-      '.cell[data-row="0"][data-col="5"][data-player=true]'
+      `.cell[data-row="${yCoordinate}"][data-col="${xCoordinate}"][data-player=true]`
     );
     console.log(targetDiv);
   };
