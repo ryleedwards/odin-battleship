@@ -22,9 +22,15 @@ const dom = (() => {
     cellDiv.classList.remove('hidden');
     if (attackResult === 'hit') {
       cellDiv.classList.add('hit');
+      const hitIcon = document.createElement('i');
+      hitIcon.classList.add('fa-solid', 'fa-explosion');
+      cellDiv.appendChild(hitIcon);
     }
     if (attackResult === 'miss') {
-      cellDiv.classList.add('water');
+      cellDiv.classList.add('miss');
+      const missIcon = document.createElement('i');
+      missIcon.classList.add('fa-solid', 'fa-burst');
+      cellDiv.appendChild(missIcon);
     }
   };
 
